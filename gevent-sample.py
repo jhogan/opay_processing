@@ -8,4 +8,4 @@ def job():
 
 jobs = [gevent.spawn(job) for i in range(3)];
 gevent.joinall(jobs)
-print [job.value for job in jobs]
+print([job.value for job in jobs])
