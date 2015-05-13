@@ -1,54 +1,25 @@
-/*{
-    "Request": {
-        "Amount": {}, 
-        "Location": {}, 
-        "MerchantID": "123456789", 
-        "MetaData": [
-            {
-                "Key": "Value"
-            }
-        ], 
-        "Options": {}, 
-        "Payee": {}, 
-        "Payer": {
-            "Account": {}, 
-            "Identity": {
-                "ID": ""
-            }
-        }, 
-        "Purchase": {}, 
-        "SkuItems": [
-            {
-                "ItemDescription": "Onion Rings", 
-                "ItemPrice": "2.99", 
-                "ItemQuantity": "2", 
-                "SKU": "sm_orings", 
-                "SKUItemID": "1692", 
-                "UTCDateTimeAdded": ""
-            }
-        ], 
-        "UTCDateTimeCreated": ""
-    }
-}
-*/
+create table merchant(
+    id                          bigint unsigned auto_increment primary key
+);
+
+create table payer(
+    id                          bigint unsigned auto_increment primary key
+);
 
 create table sku_items(
     id                          bigint unsigned auto_increment primary key,
-    item_desc                   varchar(255)  not null,
-    item_price                  decimal(19,4) not null,
-    sku                         varchar(255)  not null,
-    utc_date_time_added         datetime      not null,
-    merchant_id                 int
-    payer_id                    int
-)
+    item_desc                   varchar(255)     not null,
+    item_price                  decimal(19,4)    not null,
+    sku                         varchar(255)     not null,
+    utc_date_time_added         datetime         not null,
+    merchant_id                 bigint unsigned  not null,
+    payer_id                    bigint unsigned  not null,
 
-create table merchant(
-    id                          int auto_increment primary key,
-    sku_items_id                bigint unsigned
-    foreign key (sku_items_id)
-        references sku_items(id)
-)
+    index ix_promo (payer_id, sku, utc_date_time_added),
 
-create table payer(
-    id                          int auto_increment primary key,
-)
+    foreign key(merchant_id)
+        references merchant(id),
+
+    foreign key(payer_id)
+        references payer(id)
+);
