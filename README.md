@@ -2,7 +2,7 @@ This repository contains all the assignments except for the Luhn Check
 assignment. That repository can be located
 [here](https://github.com/jhogan/opay\_luhn.git).
 
-Below are descriptions of each .py file and the assignments they are associated
+Below are descriptions of each .py files and the assignments they are associated
 with.
 
 gevent-sample.py
