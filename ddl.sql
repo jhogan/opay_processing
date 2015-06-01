@@ -1,6 +1,6 @@
 create table merchant(
     id                          bigint unsigned auto_increment primary key
-);
+); 
 
 create table payer(
     id                          bigint unsigned auto_increment primary key
